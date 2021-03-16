@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import bundle from '../bundler';
-import CodeEditor from './code-editor';
+import CodeEditor from './CodeEditor';
 import Preview from './Preview';
 import Resizable from './Resizable';
 
