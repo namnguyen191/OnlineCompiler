@@ -1,14 +1,18 @@
 import './TextEditor.css';
 import MDEditor from '@uiw/react-md-editor';
 import React, { memo, useEffect, useRef, useState } from 'react';
+import { Cell } from '../state';
+import { useActions } from '../hooks/use-actions';
 
-export type TextEditorProps = {};
+export type TextEditorProps = {
+  cell: Cell;
+};
 
 const TextEditor: React.FC<TextEditorProps> = (props) => {
-  const {} = props;
+  const { cell } = props;
+  const { updateCell } = useActions();
 
   const ref = useRef<HTMLDivElement | null>(null);
-  const [value, setValue] = useState<string | undefined>('**Hello world!!!**');
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
@@ -33,7 +37,10 @@ const TextEditor: React.FC<TextEditorProps> = (props) => {
   if (editing) {
     return (
       <div className="text-editor" ref={ref}>
-        <MDEditor value={value} onChange={setValue} />
+        <MDEditor
+          value={cell.content}
+          onChange={(value) => updateCell(cell.id, value ?? '')}
+        />
       </div>
     );
   }
@@ -41,7 +48,7 @@ const TextEditor: React.FC<TextEditorProps> = (props) => {
   return (
     <div className="text-editor card" onClick={() => setEditing(true)}>
       <div className="card-content">
-        <MDEditor.Markdown source={value ?? ' '} />
+        <MDEditor.Markdown source={cell.content || 'Click To Edit!'} />
       </div>
     </div>
   );

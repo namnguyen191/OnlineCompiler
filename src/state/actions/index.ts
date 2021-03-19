@@ -18,8 +18,8 @@ export type DeleteCellAction = {
   };
 };
 
-export type InsertCellBeforeAction = {
-  type: ActionType.INSERT_CELL_BEFORE;
+export type InsertCellAfterAction = {
+  type: ActionType.INSERT_CELL_AFTER;
   payload: {
     id: string | null;
     type: CellTypes;
@@ -34,8 +34,20 @@ export type UpdateCellAction = {
   };
 };
 
+export type BundleCreateAction = {
+  type: ActionType.BUNDLE_CREATED;
+  payload: {
+    cellId: string;
+    bundle: {
+      code: string;
+      err: string;
+    };
+  };
+};
+
 export type Action =
   | MoveCellAction
   | DeleteCellAction
-  | InsertCellBeforeAction
-  | UpdateCellAction;
+  | InsertCellAfterAction
+  | UpdateCellAction
+  | BundleCreateAction;
