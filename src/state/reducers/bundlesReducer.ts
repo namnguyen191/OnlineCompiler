@@ -2,20 +2,34 @@ import produce from 'immer';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
-type BundleStates = {
-  [key: string]: {
-    code: string;
-    err: string;
-  };
+type BundlesStates = {
+  [key: string]:
+    | {
+        loading: boolean;
+        code: string;
+        err: string;
+      }
+    | undefined;
 };
 
-const initialState: BundleStates = {};
+const initialState: BundlesStates = {};
 
 const bundlesReducer = produce(
-  (state: BundleStates = initialState, action: Action): BundleStates => {
+  (state: BundlesStates = initialState, action: Action): BundlesStates => {
     switch (action.type) {
-      case ActionType.BUNDLE_CREATED:
-        state[action.payload.cellId] = action.payload.bundle;
+      case ActionType.BUNDLE_START:
+        state[action.payload.cellId] = {
+          loading: true,
+          code: '',
+          err: ''
+        };
+        return state;
+      case ActionType.BUNDLE_COMPLETE:
+        state[action.payload.cellId] = {
+          loading: false,
+          code: action.payload.bundle.code,
+          err: action.payload.bundle.err
+        };
         return state;
       default:
         return state;

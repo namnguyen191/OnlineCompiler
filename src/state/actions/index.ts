@@ -34,8 +34,15 @@ export type UpdateCellAction = {
   };
 };
 
-export type BundleCreateAction = {
-  type: ActionType.BUNDLE_CREATED;
+export type BundleStartAction = {
+  type: ActionType.BUNDLE_START;
+  payload: {
+    cellId: string;
+  };
+};
+
+export type BundleCompleteAction = {
+  type: ActionType.BUNDLE_COMPLETE;
   payload: {
     cellId: string;
     bundle: {
@@ -50,4 +57,5 @@ export type Action =
   | DeleteCellAction
   | InsertCellAfterAction
   | UpdateCellAction
-  | BundleCreateAction;
+  | BundleStartAction
+  | BundleCompleteAction;
