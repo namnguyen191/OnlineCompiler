@@ -17,6 +17,22 @@ const CodeCell: React.FC<CodeCellProps> = (props) => {
   const bundle = useTypeSelector((state) => {
     return state.bundles[cell.id];
   });
+  // const cumulativeCode = useTypeSelector((state) => {
+  //   const { data, order } = state.cells;
+  //   const orderedCells = order.map((id) => data[id]);
+
+  //   const cumulativeCode = [];
+  //   for (let c of orderedCells) {
+  //     if (c.type === 'code') {
+  //       cumulativeCode.push(c.content);
+  //     }
+  //     if (c.id === cell.id) {
+  //       break;
+  //     }
+  //   }
+
+  //   return cumulativeCode;
+  // });
 
   useEffect(() => {
     if (!bundle) {
