@@ -3,7 +3,7 @@
 {
   "title": "JavaScript Online Compiler",
   "imgUrl": "https://raw.githubusercontent.com/namnguyen191/OnlineCompiler/master/public/online-compiler-bg.webp",
-  "stacks": ["react", "typescript", "webpack", "iframe"],
+  "stacks": ["react", "typescript", "webpack", "iframe", "redux"],
   "primaryColor": "#0000b3"
 }
 ```
